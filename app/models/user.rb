@@ -16,9 +16,10 @@ class User < ApplicationRecord
 
 		attr_accessor :sheet_error
 
-	HEADER_ROW = 1
-	INITAL_ROW = 2	
+	HEADER_ROW = 1 # consider first row as header
+	INITAL_ROW = 2	# Actual data row 
 
+	# process excel files
 	def self.import_via_excelsheet(url)
 			require 'roo'
 			spreadsheet = Roo::Spreadsheet.open(url.path)
@@ -38,13 +39,14 @@ class User < ApplicationRecord
 		return records  	
 	end
 
-
+	# records after processed excel file
 	def self.imported_users(url)
 		users = import_via_excelsheet(url)
 		saving_records(users)
 		users
 	end	
 
+	# saving records and collect errors as manner
 	def self.saving_records(users)
     if users.map(&:valid?).all?
       users.each(&:save)
@@ -62,12 +64,13 @@ class User < ApplicationRecord
 
 	private
 
+	# allowed only whitelisted attributes
 	def self.whitelist_attributes(raw_parameters)
 		params = ActionController::Parameters.new(raw_parameters)
 		params.permit(:first_name, :last_name, :email_id, :sheet_error)
 	end
 
-
+	# error pattern
 	def self.error_message(name, i)
 			"#{name}(#{(i-HEADER_ROW).ordinalize} row)"
 	end

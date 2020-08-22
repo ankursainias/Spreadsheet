@@ -9,14 +9,18 @@
 		</div>
 	<% end %>
 <%end%>
+
 	<h2>Total saved rows:- <%=  @saved_objects[:passed] %></h2>
 	<h2>Total unsaved rows:- <%=  @saved_objects[:failed] %></h2>
+
 	<table>
+		
 	  <tr>
 	    <th>First Name</th>
 	    <th>Last Name</th>
 	    <th>Email ID</th>
 	  </tr>
+
 	  <% @users.each_with_index do |user,index |%>
 	  <tr style="color:<%= user.errors.any? ? 'red' : 'black'%>;">
 	    <td><%= user.first_name %></td>

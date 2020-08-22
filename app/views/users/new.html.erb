@@ -1,8 +1,7 @@
 <h2>Users Import</h2>
 
 <%= form_tag( users_create_path ,method: :post,  multipart: true, remote: true, id: 'import-users') do  %>
-	
-	<label> Allow only extension .xlsx and .xls </label>
+		<div> <label> Allow only extension .xlsx and .xls </label> </div>
 	
 	<div>
 		<%= file_field_tag :file, accept: ".xlsx,.xls", onclick: "this.value=null;" %>
@@ -13,10 +12,7 @@
 
 
 
-<div id="imported-data">
-
-
-</div>
+<div id="imported-data"></div>
 
 
 
