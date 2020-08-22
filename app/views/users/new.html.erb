@@ -1,0 +1,49 @@
+<h2>Users Import</h2>
+
+<%= form_tag( users_create_path ,method: :post,  multipart: true, remote: true, id: 'import-users') do  %>
+	
+	<label> Allow only extension .xlsx and .xls </label>
+	
+	<div>
+		<%= file_field_tag :file, accept: ".xlsx,.xls", onclick: "this.value=null;" %>
+	</div>
+
+	<%= submit_tag 'Submit', id: 'submit-btn', style: 'display: none;' %>
+<%end%>
+
+
+
+<div id="imported-data">
+
+
+</div>
+
+
+
+	<script type="text/javascript">
+		
+		document.getElementById('file').onchange = function() {
+				
+				var extention = this.value.substr((this.value.lastIndexOf('.') +1))
+					
+					if (['xls', 'xlsx'].includes(extention)){
+						
+						document.getElementById('imported-data').innerHTML = ''	
+   					document.getElementById("submit-btn").click();
+
+					}
+					else{
+						
+						alert(`file type ${extention} not allow`)
+						this.value=null;
+						return false
+					}
+		};
+	</script>
+
+
+	<style type="text/css">
+		#error_explanation{
+			color: red;
+		}
+	</style>

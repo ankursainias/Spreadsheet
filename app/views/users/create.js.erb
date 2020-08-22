@@ -1,0 +1,8 @@
+<% if @file_error.present? %>
+	alert("<%= @file_error %>")
+<%else%>
+	document.getElementById('imported-data').innerHTML = ("<%= escape_javascript render(:partial => 'records') %>");
+<%end%>
+
+
+document.getElementById("import-users").reset();
