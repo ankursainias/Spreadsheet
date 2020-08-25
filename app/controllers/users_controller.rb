@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 # import excel file and create users
   def create
   	@users = User.imported_users(params[:file]) if @file_error.nil?
-    error_handle
+    error_handle if @users.present?
   	respond_to do |format|
   		format.js 
   	end
@@ -40,12 +40,10 @@ class UsersController < ApplicationController
 
   # validate  uploaded file extension
   def extension_allowed
-    begin
       exten = File.extname(params[:file].original_filename)
-      raise "file type #{params[:file].original_filename} not allow " unless ['.xls', '.xlsx'].include?(exten)
-    rescue Exception => e
-      @file_error = e.message
-    end
+      unless ['.xls', '.xlsx'].include?(exten)
+        @file_error = flash[:error] = "file type #{params[:file].original_filename} not allow"
+      end
   end  
 
 end

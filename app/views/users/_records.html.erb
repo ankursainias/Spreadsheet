@@ -1,4 +1,3 @@
-
 <% if @errors.any? %>
 	<h2><%= pluralize(@errors.size, "error") %> prohibited this import from completing:</h2>
 	<% @errors.each do |msg|%>
@@ -10,9 +9,9 @@
 	<% end %>
 <%end%>
 
-	<h2>Total saved rows:- <%=  @saved_objects[:passed] %></h2>
-	<h2>Total unsaved rows:- <%=  @saved_objects[:failed] %></h2>
-
+	<h3>Total saved rows:- <%=  @saved_objects[:passed] %></h3>
+	<h3>Total unsaved rows:- <%=  @saved_objects[:failed] %></h3>
+	
 	<table>
 		
 	  <tr>

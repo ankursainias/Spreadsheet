@@ -1,3 +1,4 @@
+<%=link_to 'Users', users_list_path %>
 <h2>Users Import</h2>
 
 <%= form_tag( users_create_path ,method: :post,  multipart: true, remote: true, id: 'import-users') do  %>

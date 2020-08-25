@@ -1,0 +1,5 @@
+en:
+  model: 
+    user:
+      validation:
+        presence: 'Saved the user without a %{attribute}'
