@@ -14,6 +14,8 @@ Things you may want to cover:
 * Database initialization
  
 * Root page 
+* For Test case follow the line on terminal for running test cases
+	rails test
 
 * ...
 # spreadsheet
